@@ -1,0 +1,54 @@
+import React from 'react'
+
+import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Movie } from '../interfaces/movieDB'
+
+
+interface Props{
+    movie:Movie
+}
+
+
+
+const MoviesPoster = ({movie}:Props) => {
+  
+ 
+
+    return (
+    
+   <>
+
+ <ScrollView horizontal={true}> 
+     
+     <View style={styles.card}>
+   <Image source={{uri:`https://image.tmdb.org/t/p/w500${movie.poster_path}`}} style={styles.image}/> 
+   </View>
+  
+
+   </ScrollView>
+   </>  
+     
+  )
+}
+
+
+const styles =StyleSheet.create({
+image:{
+    flex:1,
+    borderRadius:18
+},card:{
+    margin:10,
+    width:200,
+    height:420,
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 12,
+},
+shadowOpacity: 0.58,
+shadowRadius: 16.00,
+
+elevation: 24,
+}
+})
+export default MoviesPoster
