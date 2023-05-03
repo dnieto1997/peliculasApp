@@ -5,12 +5,15 @@ import { Movie } from '../interfaces/movieDB'
 
 
 interface Props{
-    movie:Movie
+    movie:Movie;
+    height?:number;
+    width?:number;
+    
 }
 
 
 
-const MoviesPoster = ({movie}:Props) => {
+const MoviesPoster = ({movie,height=300,width=140}:Props) => {
   
  
 
@@ -35,7 +38,11 @@ const MoviesPoster = ({movie}:Props) => {
 const styles =StyleSheet.create({
 image:{
     flex:1,
-    borderRadius:18
+    borderRadius:20,
+
+
+    
+    
 },card:{
     margin:10,
     width:200,

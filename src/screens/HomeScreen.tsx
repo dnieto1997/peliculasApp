@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, ActivityIndicator, Dimensions } from 'react-native';
+import { View, ActivityIndicator, Dimensions,FlatList, Text,ScrollView} from 'react-native';
 import { useMovies } from '../hooks/useMovies';
 import MoviesPoster from '../component/MoviesPoster';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
+import HorizantalSlider from '../component/HorizantalSlider';
+
 
 const {width:windowWidth}=Dimensions.get('window')
 
@@ -13,7 +15,7 @@ const {width:windowWidth}=Dimensions.get('window')
 const  HomeScreen =() => {
  
 
-   const {peliculasEnCine,isLoading}= useMovies()
+   const {isLoading,nowPlaying,popular,topRated,upcoming}= useMovies()
   const {top}=useSafeAreaInsets()
 
 
@@ -26,26 +28,29 @@ const  HomeScreen =() => {
  }
 
 
-  console.log(peliculasEnCine[0]?.title)
+
 
   return (
-  <>
- <View style={{marginTop:top+20}}>
+ <ScrollView >
+ <View style={{marginTop:top + 20}}>
 
-
+<View style={{height:440}}>
  <Carousel 
 
-data={peliculasEnCine}
-renderItem={()=> <MoviesPoster movie={peliculasEnCine[0]}/> }
+data={nowPlaying!}
+renderItem={({item}:any)=> <MoviesPoster movie={item} height={300} width={200}/> }
 sliderWidth={windowWidth}
-itemWidth={300}
-
-
+itemWidth={250}
+layout={'default'} 
+inactiveSlideOpacity={0.9}
 
 />
+</View>
    
    
-   
+   <HorizantalSlider title='Populares' movies={popular!} />
+   <HorizantalSlider title='Top Rated' movies={topRated!}/>
+   <HorizantalSlider title='Upcoming' movies={upcoming!}/>
    </View> 
  
 
@@ -53,7 +58,7 @@ itemWidth={300}
 
 
 
-   </>
+   </ScrollView>
   )
 }
 
