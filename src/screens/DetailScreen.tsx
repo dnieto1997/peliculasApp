@@ -1,12 +1,14 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect,useState} from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
 import { Movie, MoviesdbResponse } from '../interfaces/movieDB';
 import { RootStackParams } from '../navigation/Navigation';
 
 
 import  Icon from 'react-native-vector-icons/Ionicons'
 import { useMoviesDetails } from '../hooks/useMoviesDetails';
+import { useMoviesCredits } from '../hooks/UseMoviesCredits';
+import MovieDetails from '../component/MovieDetails';
 
 const Screenheight = Dimensions.get('screen').height
 interface Props extends StackScreenProps<RootStackParams, 'DetailsScreen'> { };
@@ -22,9 +24,9 @@ const DetailScreen = ({ route }: Props) => {
 
   const movie = route.params
   
-useMoviesDetails(movie.id)
+ const {isLoading,movieFull,cast}=useMoviesDetails(movie.id)
 
-
+console.log({cast})
 
 
   return (
@@ -41,13 +43,16 @@ useMoviesDetails(movie.id)
           <Text style={styles.title}>{movie.original_title}</Text>
           <Text style={styles.subTitle} >{movie.title}</Text>
         </View>
+        
+        <View>
+        
+          {
+            isLoading?<ActivityIndicator size={30} color="grey" style={{marginTop:20}}/>
+          :<MovieDetails movieFull={movieFull!} cast={cast}/>
+          }
+         </View> 
 
-        <View style={styles.marginContainer}>
-          <Icon name="star-half-outline"
-          color="grey"
-          size={20}/>
-
-        </View>
+        
       </ScrollView>
     </>
   );
@@ -87,6 +92,7 @@ const styles = StyleSheet.create({
   title:{
     fontSize:18,
     fontWeight:'bold'
+    
   },
   imageBorder:{
   borderBottomEndRadius:25,
