@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Movie } from '../interfaces/movieDB'
+import { useNavigation } from '@react-navigation/native';
 
 
 interface Props{
@@ -13,22 +14,24 @@ interface Props{
 
 
 
-const MoviesPoster = ({movie,height=300,width=140}:Props) => {
+const MoviesPoster = ({movie}:Props) => {
   
+    const navigation = useNavigation();
  
 
     return (
     
    <>
 
- <ScrollView horizontal={true}> 
+ <TouchableOpacity activeOpacity={0.8} 
+ style={{marginHorizontal:2,paddingBottom:20,paddingHorizontal:5}} onPress={()=>navigation.navigate('DetailsScreen',movie)}> 
      
      <View style={styles.card}>
    <Image source={{uri:`https://image.tmdb.org/t/p/w500${movie.poster_path}`}} style={styles.image}/> 
    </View>
   
 
-   </ScrollView>
+   </TouchableOpacity>
    </>  
      
   )
