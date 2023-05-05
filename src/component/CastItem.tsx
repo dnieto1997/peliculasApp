@@ -11,7 +11,11 @@ const CastItem = ({actor}:Props) => {
   const uri = `https://image.tmdb.org/t/p/w500${actor.profile_path}`
     return (
     <View style={styles.container}>
-        <Image source={{uri}} style={{width:50,height:50,borderRadius:10}}/>
+        {
+            actor.profile_path && (<Image source={{uri}} style={{width:60,height:60,borderRadius:10}}/>)
+        }
+        
+        
         <View style={styles.actorInfo}>
         <Text style={{fontSize:18,fontWeight:'bold'}}>
             {actor.name}
@@ -29,6 +33,7 @@ const styles =StyleSheet.create({
         flexDirection:'row',
         backgroundColor:'white',
         borderRadius:10,
+        height:70,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -36,12 +41,15 @@ const styles =StyleSheet.create({
         },
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
-        
         elevation: 24,
+        marginRight:30,
+        paddingRight:10,
+        paddingTop:6
 
     },
     actorInfo:{
-        marginLeft:10
+        marginLeft:10,
+        marginTop:5
     }
 })
 

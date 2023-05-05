@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect,useState} from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Movie, MoviesdbResponse } from '../interfaces/movieDB';
 import { RootStackParams } from '../navigation/Navigation';
 
@@ -20,7 +20,7 @@ interface Detalles {
 }
 
 
-const DetailScreen = ({ route }: Props) => {
+const DetailScreen = ({ route,navigation }: Props) => {
 
   const movie = route.params
   
@@ -52,7 +52,16 @@ console.log({cast})
           }
          </View> 
 
+
+<TouchableOpacity style={styles.backButton} onPress={()=>navigation.pop()}>
+<Icon 
+        color="white"
+        name="arrow-back-circle-sharp"
+        size={60}
         
+        />
+</TouchableOpacity>
+    
       </ScrollView>
     </>
   );
@@ -60,8 +69,7 @@ console.log({cast})
 
 const styles = StyleSheet.create({
   posterImage: {
-    flex: 1,
-
+    flex: 1
 
 
   },
@@ -99,6 +107,12 @@ const styles = StyleSheet.create({
   borderBottomStartRadius:25,
   flex:1,
   overflow:'hidden'
+  },
+  backButton:{
+    position:'absolute',
+    elevation:9,
+    top:30,
+    left:5
   }
 })
 
