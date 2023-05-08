@@ -5,6 +5,7 @@ import MoviesPoster from '../component/MoviesPoster';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import HorizantalSlider from '../component/HorizantalSlider';
+import GradienteBackground from '../component/GradienteBackground';
 
 
 const {width:windowWidth}=Dimensions.get('window')
@@ -31,6 +32,8 @@ const  HomeScreen =() => {
 
 
   return (
+ 
+ <GradienteBackground >
  <ScrollView >
  <View style={{marginTop:top + 20}}>
 
@@ -43,6 +46,8 @@ sliderWidth={windowWidth}
 itemWidth={250}
 layout={'default'} 
 inactiveSlideOpacity={0.9}
+
+
 
 />
 </View>
@@ -59,6 +64,7 @@ inactiveSlideOpacity={0.9}
 
 
    </ScrollView>
+   </GradienteBackground>
   )
 }
 
