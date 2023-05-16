@@ -4,7 +4,7 @@ import movieDb from "../api/movieDb";
 
 
 interface MoviesState {
-   nowPlaying: Movie[];
+   nowPlaying?: Movie[];
    popular: Movie[];
    topRated: Movie[];
    upcoming: Movie[];
