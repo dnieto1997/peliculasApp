@@ -3,13 +3,16 @@ import { View, ActivityIndicator, Dimensions,FlatList, Text,ScrollView, StyleShe
 import LinearGradient from 'react-native-linear-gradient';
 import { GradientContext } from '../context/GradientContext';
 
+
 interface Props{
     children: JSX.Element | JSX.Element[]
 }
 const GradienteBackground = ({children}:Props) => {
   
-  const {colors} = useContext(GradientContext)
+  const {colors,previousColors} = useContext(GradientContext)
   
+
+
 
   colors.primary
   
@@ -23,6 +26,8 @@ const GradienteBackground = ({children}:Props) => {
     />
     {children}
     
+
+
     </View>
   )
 }

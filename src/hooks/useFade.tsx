@@ -6,7 +6,7 @@ import { View,Animated, Button } from 'react-native'
 const useFade = () => {
     
   const opacity =useRef(new Animated.Value(0)).current
-    const Fadein = ()=>{
+    const Fadein = (callback?:Function)=>{
   
       Animated.timing(
         opacity,
@@ -15,7 +15,7 @@ const useFade = () => {
           duration:1000,
           useNativeDriver:true
         }
-      ).start();
+      ).start(()=>callback?callback():null);
     }
     
   

@@ -20,8 +20,8 @@ export const GradientContext =createContext({} as ContextProps  )
 export const GradientProvider = ({children}:any)=>{
 
     const [colors, setColors] = useState<ImageColors>({
-primary:'red',
-secundary:'blue'
+        primary:'transparent',
+        secundary:'transparent'
 
     })
 
